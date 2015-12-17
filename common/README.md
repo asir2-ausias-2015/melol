@@ -2,7 +2,7 @@
 
 Indice:
 
-- **melol.css**: En la carpeta ccs encontrareis un fichero melol.css
+- **melol.css**: En la carpeta css encontrareis un fichero melol.css
 - **./config.php**: Fichero de configuración al que iremos añadiendo variables. 
   - Incluir con: require_once('config.php') al principio de todos los programas
   - Para configurar nuestros propios valores sin afectar a otros equipos, se ha previsto
