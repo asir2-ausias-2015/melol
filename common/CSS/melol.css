@@ -1,7 +1,7 @@
 /* Aqui tienen que ir todas las clases que creeis nuevas para luego referenciar este archivo 
 	desde todas las paginas de la aplicacion */
 
-	.padd50T{                           	/*Padding Top de 40 pixeles*/
+	.padd40T{                           	/*Padding Top de 40 pixeles*/
 		padding-top: 40px;
 		}
 	.padd5B{                          	/*Padding Bottom de 5 pixeles*/
