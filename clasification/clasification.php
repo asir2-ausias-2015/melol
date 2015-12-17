@@ -29,15 +29,16 @@
         ?>
         <!-- HEADER START -->
         <!-- HEADER END -->
+        <!-- TABLE START -->
         <?php
             if($result->num_rows>=1){
                 $row=$result->fetch_assoc();
                 for ($i = 1; $i <= count($row); $i++) {
+                    // COLUMNS GO HERE
+                }
         ?>
-        <!-- TABLE START -->
         <!-- TABLE END -->
         <?php
-                }
             } else {
                  die("Ha ocurrido un error: ".$conexion->error);
             }
