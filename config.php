@@ -3,6 +3,7 @@
 $config['dbName'] = "ejemplo";
 $config['dbUser'] = "ejemplo";
 $config['dbPass'] = "ejemplo";
+$config['dbHost'] = "localhost";
 
 # allow local overrides
 if (file_exists('./config.local.php')) {
