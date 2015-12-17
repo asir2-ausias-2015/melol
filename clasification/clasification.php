@@ -30,7 +30,17 @@
         <!-- HEADER START -->
         <!-- HEADER END -->
         <?php
-            
+            if($result->num_rows>=1){
+                $row=$result->fetch_assoc();
+                for ($i = 1; $i <= count($row); $i++) {
+        ?>
+        <!-- TABLE START -->
+        <!-- TABLE END -->
+        <?php
+                }
+            } else {
+                 die("Ha ocurrido un error: ".$conexion->error);
+            }
         ?>
         <!-- FOOT START -->
         <!-- FOOT END -->
