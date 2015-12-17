@@ -44,5 +44,9 @@
         ?>
         <!-- FOOT START -->
         <!-- FOOT END -->
+        <?php
+            $result->free();
+            $conn->close();
+        ?>
     </body>
 </html>
