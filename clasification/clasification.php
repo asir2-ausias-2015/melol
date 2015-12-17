@@ -29,6 +29,7 @@
         ?>
         <!-- HEADER START -->
         <!-- HEADER END -->
+        <!-- BODY START -->
         <!-- TABLE START -->
         <?php
             if($result->num_rows>=1){
@@ -43,6 +44,7 @@
                  die("Ha ocurrido un error: ".$conexion->error);
             }
         ?>
+        <!-- BODY END -->
         <!-- FOOT START -->
         <!-- FOOT END -->
         <?php
