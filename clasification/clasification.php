@@ -35,7 +35,18 @@
             if($result->num_rows>=1){
                 $row=$result->fetch_assoc();
                 for ($i = 1; $i <= count($row); $i++) {
-                    // COLUMNS GO HERE
+        ?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <!-- Hasta tener la tabla history_league
+                    <td><?php echo $i; ?></td> 
+                -->
+                <td><?php echo $row[$i]['name']; ?></td>
+                <td><?php echo $row[$i]['team']; ?></td>
+                <td><?php echo $row[$i]['money']; ?></td>
+                <td><?php echo $row[$i]['points']; ?></td>
+            </tr>
+        <?php
                 }
         ?>
         <!-- TABLE END -->
