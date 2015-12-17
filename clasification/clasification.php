@@ -11,12 +11,21 @@
     <body>
         <?php
             require '/credentials.php';
-                    
-            $conexion = new mysqli($dbConn['host'], $dbConn['user'], $dbConn['pass'], $dbConn['db']);
 
-            if ($conexion->connect_error) {
-                die("Error de conexión: " . $conexion->connect_error);
+            $conn = new mysqli($dbConn['host'], $dbConn['user'], $dbConn['pass'], $dbConn['db']);
+
+            if ($conn->connect_error) {
+                die("Error de conexión: " . $conn->connect_error);
             }
+
+            $sql = "SELECT *"
+                    . "FROM `coachLeaderboard"
+                    . "WHERE leagueId = '" . $league . "';";
+
+            print($sql);
+
+            $result=$conexion->query($sql);
+
         ?>
         <!-- HEADER START -->
         <!-- HEADER END -->
