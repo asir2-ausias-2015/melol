@@ -12,7 +12,7 @@
         <?php
             require '/credentials.php';
                     
-            $conexion = new mysqli('$HOST', '$USER', '$PASS', '$DB');
+            $conexion = new mysqli($dbConn['host'], $dbConn['user'], $dbConn['pass'], $dbConn['db']);
 
             if ($conexion->connect_error) {
                 die("Error de conexión: " . $conexion->connect_error);
