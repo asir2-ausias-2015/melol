@@ -16,7 +16,7 @@
 	.width70 {                        	/*Ancho de 70 pixeles*/
 		width: 70px;
 	}
-	.width140 {                     	/*Ancho de 140 pixeles*/
+	.maxwidth140 {                     	/*Ancho máximo de 140 pixeles*/
 		max-width: 140px;
 	}
 	.minwidth100 {                    	/*Ancho mínimo de 100px*/
