@@ -1,0 +1,40 @@
+
+/*Super Diccionario CSS Melol
+
+Aquí iremos añadiendo las clases que utilicemos para poder reutilizarlas, antes de crear una nueva, 
+intentar comprobar que no existe en bootstrap.
+
+Modo de empleo:
+
+1º Querer utilizar una clase.
+2º Buscar en este diccionario si exite ya una clase con lo que buscas.
+3º Si esta esa clase, utilizala, si no esta creada, creala para que todos podamos utilizarla
+
+Al lado de cada clase explicar que es lo que hace para mejor entendimiento de todos.
+
+*/
+
+	.padd50T{                           /*Padding Top de 40 pixeles*/
+			padding-top: 40px;
+		}
+		.padd5B{                          /*Padding Bottom de 5 pixeles*/
+			padding-bottom: 5px;  
+		} 
+		.btable {                         /*Borde solido de 3 pixeles Color gris*/
+			border: 3px solid #a9a9a9;
+		}
+		.width25 {                        /*Ancho 25 pixeles*/
+			width: 25px;
+		}
+		.width70 {                        /*Ancho de 70 pixeles*/
+			width: 70px;
+		}
+		.width140 {                       /*Ancho de 140 pixeles*/
+			max-width: 140px;
+		}
+		.minwidth100 {                    /*Ancho mínimo de 100px*/
+			min-width: 100px;
+		}
+		.minwidth25 {
+			min-width: 25px;
+		}
