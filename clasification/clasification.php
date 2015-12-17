@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php
-            include 'credentials.php';
+            require '/credentials.php';
                     
             $conexion = new mysqli('$HOST', '$USER', '$PASS', '$DB');
 
