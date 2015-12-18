@@ -10,9 +10,9 @@
 	</head>
 	<body>
 		<?php
-			require '/credentials.php';
+			require '../config.local.php';
 
-			$conn = new mysqli($dbConn['host'], $dbConn['user'], $dbConn['pass'], $dbConn['db']);
+			$conn = new mysqli($config['dbHost'], $config['dbUser'], $config['dbPass'], $config['dbName']);
 
 			if ($conn->connect_error) {
 				die("Error de conexión: " . $conn->connect_error);
