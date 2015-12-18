@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<?php
-			require '../config.local.php';
+			require '../config.php';
 
 			$conn = new mysqli($config['dbHost'], $config['dbUser'], $config['dbPass'], $config['dbName']);
 
@@ -56,7 +56,6 @@
 		<?php
 			}
 		?>
-		</table>
 		<!-- TABLE END -->
 		<!-- BODY END -->
 		<!-- FOOT START -->
