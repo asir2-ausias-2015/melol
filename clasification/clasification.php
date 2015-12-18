@@ -18,9 +18,9 @@
 				die("Error de conexión: " . $conn->connect_error);
 			}
 
-			$sql = "SELECT *"
-					. "FROM `coachLeaderboard"
-					. "WHERE leagueId = '" . $league . "';";
+			$sql = "SELECT * "
+					. "FROM `coachLeaderboard` "
+					. "WHERE `league` = '1';";
 
 			print($sql);
 
