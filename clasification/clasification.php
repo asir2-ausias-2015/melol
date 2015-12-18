@@ -46,13 +46,16 @@
 			</tr>
 		<?php
 				}
-		?>
-		<!-- TABLE END -->
-		<?php
 			} else {
-				 die("Ha ocurrido un error: ".$conexion->error);
+		?>
+		<tr>
+			<td colspan="6" class="text-center"> No hay datos que mostrar ahora mismo. </td>
+		</tr>
+		<?php
 			}
 		?>
+		</table>
+		<!-- TABLE END -->
 		<!-- BODY END -->
 		<!-- FOOT START -->
 		<!-- FOOT END -->
