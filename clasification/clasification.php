@@ -35,10 +35,12 @@
 				for ($i = 1; $i <= count($row); $i++) {
 		?>
 			<tr>
+				<td>
+					<?php
+						// Later code to put image
+					?>
+				</td>
 				<td><?php echo $i; ?></td>
-				<!-- Hasta tener la tabla history_league
-					<td><?php echo $i; ?></td> 
-				-->
 				<td><?php echo $row[$i]['name']; ?></td>
 				<td><?php echo $row[$i]['team']; ?></td>
 				<td><?php echo $row[$i]['money']; ?></td>
