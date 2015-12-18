@@ -22,9 +22,7 @@
 					. "FROM `coachLeaderboard` "
 					. "WHERE `league` = '1';";
 
-			print($sql);
-
-			$result=$conexion->query($sql);
+			$result=$conn->query($sql);
 
 		?>
 		<!-- HEADER START -->
