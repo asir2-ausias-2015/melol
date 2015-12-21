@@ -6,8 +6,8 @@ $config['dbPass'] = "ejemplo";
 $config['dbHost'] = "localhost";
 
 # allow local overrides
-if (file_exists('./config.local.php')) {
-	require_once('config.local.php');
+if (file_exists(dirname(__FILE__).'/config.local.php')) {
+	require_once(dirname(__FILE__).'/config.local.php');
 }
 
 ?>
