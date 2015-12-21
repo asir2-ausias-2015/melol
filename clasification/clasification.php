@@ -1,5 +1,6 @@
 <?php
-	// SESION GOES HERE
+require '../config.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
 		}
 		.padd5B{
 			padding-bottom: 5px;
-		} 
+		}
 		.b3solidGrey {
 			border: 3px solid #a9a9a9;
 		}
@@ -38,77 +39,75 @@
 		}
 		</style>
 	</head>
-	<body> 
+	<body>
 		<?php
-			require '../config.php';
+		$conn = new mysqli($config['dbHost'], $config['dbUser'],
+				$config['dbPass'], $config['dbName']);
 
-			$conn = new mysqli($config['dbHost'], $config['dbUser'], $config['dbPass'], $config['dbName']);
+		if ($conn->connect_error) {
+			die("Error de conexión: " . $conn->connect_error);
+		}
 
-			if ($conn->connect_error) {
-				die("Error de conexión: " . $conn->connect_error);
-			}
+		$sql = "SELECT * "
+			. "FROM `coachLeaderboard` "
+			. "WHERE `league` = '1';";
 
-			$sql = "SELECT * "
-					. "FROM `coachLeaderboard` "
-					. "WHERE `league` = '1';";
-
-			$result=$conn->query($sql);
-
-		?> 
-		<!-- HEADER START -->
-		<!-- HEADER END -->
-		<!-- BODY START -->
-                <div class="container ">
-                    <div class="padd50T padd5B"><span>Nombre Liga</span><span class="pull-right">Jornada X/Y</span></div>
-                    <!-- TABLE START -->
-                    <div>
-                        <table class="table table-striped table-bordered table-hover table-condensed b3solidGrey"> 
-			<tr>
-				<th scope="col" class="width25">Pos.</th>
-				<th scope="col" class="minwidth25 width25">&nbsp;&nbsp;</th>
-				<th scope="col" class="minwidth100 maxwidth140">Equipo</th>
-				<th scope="col" class="minwidth100 maxwidth140">Coach</th>
-				<th scope="col" class="minwidth100 maxwidth140">Valor equipo</th>
-				<th scope="col" class="minwidth100 width70">Puntos</th>
-			</tr>
-                    <?php
-                            if($result->num_rows>=1){
-                                    $row=$result->fetch_assoc();
-                                    for ($i = 1; $i <= count($row); $i++) {
-                    ?>
-			<tr>
-				<td>
+		$result=$conn->query($sql);
+		?>
+		<div class="container">
+			<!-- HEADER START -->
+			<!-- HEADER END -->
+			<!-- BODY START -->
+			<div class="padd50T padd5B"><span>Nombre Liga</span><span class="pull-right">Jornada X/Y</span></div>
+			<!-- TABLE START -->
+			<div>
+				<table class="table table-striped table-bordered table-hover table-condensed b3solidGrey">
+					<tr>
+						<th scope="col" class="width25">Pos.</th>
+						<th scope="col" class="minwidth25 width25">&nbsp;&nbsp;</th>
+						<th scope="col" class="minwidth100 maxwidth140">Equipo</th>
+						<th scope="col" class="minwidth100 maxwidth140">Coach</th>
+						<th scope="col" class="minwidth100 maxwidth140">Valor equipo</th>
+						<th scope="col" class="minwidth100 width70">Puntos</th>
+					</tr>
 					<?php
-						// Later code to put image
+					if($result->num_rows>=1){
+						$row=$result->fetch_assoc();
+						for ($i = 1; $i <= count($row); $i++) {
 					?>
-				</td>
-				<td><?php echo $i; ?></td>
-				<td><?php echo $row[$i]['name']; ?></td>
-				<td><?php echo $row[$i]['team']; ?></td>
-				<td class="text-right"><?php echo $row[$i]['money']; ?></td>
-				<td class="text-right"><?php echo $row[$i]['points']; ?></td>
-			</tr>
-                    <?php
-                                    }
-                            } else {
-                    ?>
-                        <tr>
-                            <td colspan="6" class="text-center"> No hay datos que mostrar ahora mismo. </td>
-                        </tr>
-		<?php
-			}
-		?>
-                        </table>
-                    </div>
-		<!-- TABLE END -->
-		<!-- BODY END -->
-                    <div><a href="#">FAQ: Sistema de puntuación</a></div>
-                </div>
-		<!-- FOOT START -->
-		<!-- FOOT END -->
-		<?php
-			$result->free();
-			$conn->close();
-		?>
+					<tr>
+						<td>
+							<?php
+							// Later code to put image
+							?>
+						</td>
+						<td><?php echo $i; ?></td>
+						<td><?php echo $row[$i]['name']; ?></td>
+						<td><?php echo $row[$i]['team']; ?></td>
+						<td class="text-right"><?php echo $row[$i]['money']; ?></td>
+						<td class="text-right"><?php echo $row[$i]['points']; ?></td>
+					</tr>
+					<?php
+						}
+					} else {
+					?>
+					<tr>
+						<td colspan="6" class="text-center"> No hay datos que mostrar ahora mismo. </td>
+					</tr>
+					<?php
+					}
+					?>
+				</table>
+				<!-- TABLE END -->
+			</div>
+			<div><a href="#">FAQ: Sistema de puntuación</a></div>
+			<!-- BODY END -->
+			<!-- FOOT START -->
+			<!-- FOOT END -->
+			<?php
+				$result->free();
+				$conn->close();
+			?>
+		</div>
 	</body>
 </html>
