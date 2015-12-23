@@ -65,7 +65,7 @@ require '../config.php';
 			$stmt->bind_result($leaguename);
 			$stmt->fetch();
 			?>
-			<div class="padd50T padd5B"><span><?php echo htmlspecialchars($leaguename); ?></span><span class="pull-right">Jornada X/Y</span></div>
+			<div class="padd50T padd5B"><span><?php echo htmlspecialchars($leaguename, ENT_QUOTES); ?></span><span class="pull-right">Jornada X/Y</span></div>
 			<!-- TABLE START -->
 			<div>
 				<table class="table table-striped table-bordered table-hover table-condensed b3solidGrey">
@@ -100,10 +100,10 @@ require '../config.php';
 									?>
 								</td>
 								<td class="width25"><?php echo $i; ?></td>
-								<td><?php echo htmlspecialchars($team); ?></td>
-								<td><?php echo htmlspecialchars($coach); ?></td>
-								<td class="text-right"><?php echo htmlspecialchars($money); ?></td>
-								<td class="text-right"><?php echo htmlspecialchars($points); ?></td>
+								<td><?php echo htmlspecialchars($team, ENT_QUOTES); ?></td>
+								<td><?php echo htmlspecialchars($coach, ENT_QUOTES); ?></td>
+								<td class="text-right"><?php echo htmlspecialchars($money, ENT_QUOTES); ?></td>
+								<td class="text-right"><?php echo htmlspecialchars($points, ENT_QUOTES); ?></td>
 							</tr>
 							<?php
 							$i++;
