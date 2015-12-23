@@ -1,6 +1,5 @@
 <?php
 require '../config.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,15 +43,15 @@ require '../config.php';
 		$conn = new mysqli($config['dbHost'], $config['dbUser'],
 				$config['dbPass'], $config['dbName']);
 
-		if ($conn->connect_error) {
+		if ($conn->connect_errno) {
 			die("Error de conexión: " . $conn->connect_error);
 		}
 
 		$sql = "SELECT * "
 			. "FROM `coachLeaderboard` "
-			. "WHERE `league` = '1';";
+			. "WHERE `league` = '1'";
 
-		$result=$conn->query($sql);
+		$result = $conn->query($sql);
 		?>
 		<div class="container">
 			<!-- HEADER START -->
@@ -63,38 +62,41 @@ require '../config.php';
 			<div>
 				<table class="table table-striped table-bordered table-hover table-condensed b3solidGrey">
 					<tr>
-						<th scope="col" class="width25">Pos.</th>
-						<th scope="col" class="minwidth25 width25">&nbsp;&nbsp;</th>
+						<th scope="col" colspan="2">Pos.</th>
 						<th scope="col" class="minwidth100 maxwidth140">Equipo</th>
 						<th scope="col" class="minwidth100 maxwidth140">Coach</th>
 						<th scope="col" class="minwidth100 maxwidth140">Valor equipo</th>
 						<th scope="col" class="minwidth100 width70">Puntos</th>
 					</tr>
 					<?php
-					if($result->num_rows>=1){
-						$row=$result->fetch_assoc();
-						for ($i = 1; $i <= count($row); $i++) {
-					?>
-					<tr>
-						<td>
-							<?php
-							// Later code to put image
+					if ($result->num_rows >= 1) {
+						$i = 1;
+						while ($row = $result->fetch_assoc()) {
 							?>
-						</td>
-						<td><?php echo $i; ?></td>
-						<td><?php echo $row[$i]['name']; ?></td>
-						<td><?php echo $row[$i]['team']; ?></td>
-						<td class="text-right"><?php echo $row[$i]['money']; ?></td>
-						<td class="text-right"><?php echo $row[$i]['points']; ?></td>
-					</tr>
-					<?php
+							<tr>
+								<td class="width25">
+									<?php
+									// Later code to put image
+									?>
+								</td>
+								<td class="width25"><?php echo $i; ?></td>
+								<td><?php echo $row['team']; ?></td>
+								<td><?php echo $row['coach']; ?></td>
+								<td class="text-right"><?php echo $row['money']; ?></td>
+								<td class="text-right"><?php echo $row['points']; ?></td>
+							</tr>
+							<?php
+							$i++;
+							if ($i > 10) {
+								die("STOP!!");
+							}
 						}
 					} else {
-					?>
-					<tr>
-						<td colspan="6" class="text-center"> No hay datos que mostrar ahora mismo. </td>
-					</tr>
-					<?php
+						?>
+						<tr>
+							<td colspan="6" class="text-center"> No hay datos que mostrar ahora mismo. </td>
+						</tr>
+						<?php
 					}
 					?>
 				</table>
@@ -105,8 +107,8 @@ require '../config.php';
 			<!-- FOOT START -->
 			<!-- FOOT END -->
 			<?php
-				$result->free();
-				$conn->close();
+			$result->free();
+			$conn->close();
 			?>
 		</div>
 	</body>
