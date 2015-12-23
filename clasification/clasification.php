@@ -52,7 +52,18 @@ require '../config.php';
 			<!-- HEADER START -->
 			<!-- HEADER END -->
 			<!-- BODY START -->
-			<div class="padd50T padd5B"><span>Nombre Liga</span><span class="pull-right">Jornada X/Y</span></div>
+			<?php
+			$sql = "SELECT `leagueName` "
+					. "FROM `leagues` "
+					. "WHERE `leagueId` = ?";
+
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('i', $id);
+			$stmt->execute();
+			$stmt->bind_result($leaguename);
+			$stmt->fetch();
+			?>
+			<div class="padd50T padd5B"><span><?php echo htmlspecialchars($leaguename); ?></span><span class="pull-right">Jornada X/Y</span></div>
 			<!-- TABLE START -->
 			<div>
 				<table class="table table-striped table-bordered table-hover table-condensed b3solidGrey">
@@ -64,6 +75,8 @@ require '../config.php';
 						<th scope="col" class="minwidth100 width70">Puntos</th>
 					</tr>
 					<?php
+					$stmt->free_result();
+
 					$sql2 = "SELECT `team`, `coach`, `money`, `points` "
 							. "FROM `coachLeaderboard` "
 							. "WHERE `league` = ?";
