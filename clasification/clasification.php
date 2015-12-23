@@ -47,11 +47,6 @@ require '../config.php';
 			die("Error de conexión: " . $conn->connect_error);
 		}
 
-		$sql = "SELECT * "
-			. "FROM `coachLeaderboard` "
-			. "WHERE `league` = '1'";
-
-		$result = $conn->query($sql);
 		?>
 		<div class="container">
 			<!-- HEADER START -->
@@ -69,9 +64,19 @@ require '../config.php';
 						<th scope="col" class="minwidth100 width70">Puntos</th>
 					</tr>
 					<?php
-					if ($result->num_rows >= 1) {
+					$sql2 = "SELECT `team`, `coach`, `money`, `points` "
+							. "FROM `coachLeaderboard` "
+							. "WHERE `league` = ?";
+
+					$stmt2 = $conn->prepare($sql2);
+					$stmt2->bind_param('i', $id);
+					$stmt2->execute();
+					$stmt2->store_result();
+
+					if ($stmt2->num_rows >= 1) {
 						$i = 1;
-						while ($row = $result->fetch_assoc()) {
+						$stmt2->bind_result($team, $coach, $money, $points);
+						while ($stmt2->fetch()) {
 							?>
 							<tr>
 								<td class="width25">
@@ -80,10 +85,10 @@ require '../config.php';
 									?>
 								</td>
 								<td class="width25"><?php echo $i; ?></td>
-								<td><?php echo $row['team']; ?></td>
-								<td><?php echo $row['coach']; ?></td>
-								<td class="text-right"><?php echo $row['money']; ?></td>
-								<td class="text-right"><?php echo $row['points']; ?></td>
+								<td><?php echo htmlspecialchars($team); ?></td>
+								<td><?php echo htmlspecialchars($coach); ?></td>
+								<td class="text-right"><?php echo htmlspecialchars($money); ?></td>
+								<td class="text-right"><?php echo htmlspecialchars($points); ?></td>
 							</tr>
 							<?php
 							$i++;
@@ -91,6 +96,7 @@ require '../config.php';
 								die("STOP!!");
 							}
 						}
+						$stmt2->free_result();
 					} else {
 						?>
 						<tr>
