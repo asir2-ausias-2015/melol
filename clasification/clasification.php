@@ -47,6 +47,8 @@ require '../config.php';
 			die("Error de conexión: " . $conn->connect_error);
 		}
 
+		$conn->set_charset("utf8");
+		$id = 1;
 		?>
 		<div class="container">
 			<!-- HEADER START -->
@@ -105,9 +107,6 @@ require '../config.php';
 							</tr>
 							<?php
 							$i++;
-							if ($i > 10) {
-								die("STOP!!");
-							}
 						}
 						$stmt2->free_result();
 					} else {
@@ -126,7 +125,6 @@ require '../config.php';
 			<!-- FOOT START -->
 			<!-- FOOT END -->
 			<?php
-			$result->free();
 			$conn->close();
 			?>
 		</div>
