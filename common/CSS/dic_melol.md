@@ -22,6 +22,13 @@ Modo de empleo:
 	}
 ```
 
+**.marg50T**: Marging de X pixeles en la posicion T/B/L/R (top/bottom/left/right)
+```
+.marg50T{                                      	
+	marging-top: 40px;
+	}
+```
+
 **.width25**: Ancho de X pixeles
 ```
 .width25 {     
