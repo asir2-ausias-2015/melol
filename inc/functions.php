@@ -1,6 +1,6 @@
 <?php
 function sec_session_start() {
-    $session_name = 'sec_session_id'; //Asignamos un nombre de sesión
+    $session_name = 'melol_session_id'; //Asignamos un nombre de sesión
     $secure = false; //mejor en config.php Lo ideal sería true para trabajar con https
     $httponly = true;
 
@@ -35,16 +35,16 @@ function sec_session_start() {
 //  se encuentran en la base de datos. Si todo va bien devolverá true.
 function login($usuario, $password, $conexion) {
     // Usar consultas preparadas previene de los ataques SQL injection.
-    if ($stmt = $conexion->prepare("SELECT id, usuario, password
-    FROM clientes
-    WHERE usuario = ?
+    if ($stmt = $conexion->prepare("SELECT userId, userNick, userPass
+    FROM users
+    WHERE userNick = ?
     LIMIT 1")) {
     $stmt->bind_param('s', $usuario);
     $stmt->execute();
     $stmt->store_result();
 
     // recogemos el resultado de la consulta
-    $stmt->bind_result($id, $usuario, $db_password); //password de la bd
+    $stmt->bind_result($id, $usuario, $db_pasword); //password de la bd
     $stmt->fetch();
     
     // calculamos el sha512 del password
@@ -122,9 +122,9 @@ function login_check($conexion) {
         $usuario = $_SESSION['usuario'];
 // Obtener el user-agent string.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
-        if ($stmt = $conexion->prepare("SELECT password 
-                                      FROM clientes 
-                                      WHERE id = ? LIMIT 1")) {
+        if ($stmt = $conexion->prepare("SELECT userPass 
+                                      FROM users 
+                                      WHERE userId = ? LIMIT 1")) {
             $stmt->bind_param('i', $id);
             $stmt->execute();
             $stmt->store_result();
