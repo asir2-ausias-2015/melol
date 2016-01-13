@@ -81,7 +81,7 @@ function login($usuario, $password, $conexion) {
 	    } else {
 		// Password no es correcto. Registramos el intento
 		$now = time();
-		$conexion->query("INSERT INTO login_attempts(id, time)
+		$conexion->query("INSERT INTO loginAttempts(id, time)
 				    VALUES ('$id', '$now')");
 		return false;
 	    }
@@ -99,7 +99,7 @@ function checkbrute($id, $conexion) {
     // Se cuentan los intentos de las 2 últimas horas
     $valid_attempts = $now - (2 * 60 * 60); //luego $tiempo_fuerzabruta = 2;
     if ($stmt = $conexion->prepare("SELECT time
-    FROM login_attempts
+    FROM loginAttempts
     WHERE id = ?
     AND time > '$valid_attempts'")) {
 	$stmt->bind_param('i', $id);
