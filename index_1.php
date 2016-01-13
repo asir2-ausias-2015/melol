@@ -40,7 +40,7 @@
 	<div id="content">
 	<?php
 	// controlador.php se encargara de mostrar el 'contenido' correspondiente
-	    include('controlador.php');
+	    include('./controlador.php');
 	?>
 	</div>
 	<div id="footer">
