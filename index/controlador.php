@@ -45,7 +45,7 @@ if (!login_check($conexion)) { //no estas autorizado
 	echo "Operación no soportada: 404 [Prueba: Default is ". $default_action ." ] and action= ". $action ."!";
     }
 }
-include( $action . '.php'); //y ahora mostramos la pagina llamada
+include( $action . '.php'); //y ahora mostramos la pagina llamada 
 
 
 

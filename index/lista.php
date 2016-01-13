@@ -8,9 +8,9 @@ if ($action == 'deleted') {
 }
 
 // Elegir los datos que deseamos recuperar de la tabla
-$query = "SELECT id,nif,nombre,apellido1,apellido2,email,telefono,usuario "
-	. "FROM clientes "
-	. "ORDER BY apellido1, apellido2, nombre";
+$query = "SELECT usersId,userMail,userNick,userSignedDate,userPoints,userLevel "
+	. "FROM users "
+	. "ORDER BY userId";
 
 // Preparamos y ejecutamos la consulta
 if ($stmt = $conexion->prepare($query)) {
@@ -19,36 +19,33 @@ if (!$stmt->execute()) {
 } 
 
 // recogemos los datos
-$stmt->bind_result($id,$nif,$nombre,$apellido1,$apellido2,$email,$telefono,
-	$usuario);
+$stmt->bind_result($usersId,$userMail,$userNick,$userSignedDate,$userPoints,$userLevel);
 
 // enlace a alta
 echo "<div>";
-echo "<a href='index.php?action=altas'>Alta cliente</a>";
+echo "<a href='index.php?action=altas'>Alta usuario</a>";
 echo "</div>";
 
 //cabecera de los datos mostrados
 echo "<table class="."table>"; //start table
 //creating our table heading
 echo "<tr>";
-echo "<th>NIF</th>";
-echo "<th>Nombre</th>";
-echo "<th>Apellido 1</th>";
-echo "<th>Apellido 2</th>";
-echo "<th>email</th>";
-echo "<th>telefono</th>";
-echo "<th>usuario</th>";
+echo "<th>ID</th>";
+echo "<th>Email</th>";
+echo "<th>Nick</th>";
+echo "<th>Fecha Registro</th>";
+echo "<th>Puntos</th>";
+echo "<th>Nivel</th>";
 echo "</tr>";
 //recorrido por el resultado de la consulta
 while ($stmt->fetch()) {
 echo "<tr>";
-echo "<td>$nif</td>";
-echo "<td>$nombre</td>";
-echo "<td>$apellido1</td>";
-echo "<td>$apellido2</td>";
-echo "<td>$email</td>";
-echo "<td>$telefono</td>";
-echo "<td>$usuario</td>";
+echo "<td>$usersId</td>";
+echo "<td>$userMail</td>";
+echo "<td>$userNick</td>";
+echo "<td>$userSignedDate</td>";
+echo "<td>$userPoints</td>";
+echo "<td>$userLevel</td>";
 echo "<td>";
 // Este enlace es para modificar el registro
 echo "<a href='index.php?action=edita&id={$id}'>Edita</a>";

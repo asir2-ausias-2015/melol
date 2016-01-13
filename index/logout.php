@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Unset all session values 
 $_SESSION = array();
  

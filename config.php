@@ -1,5 +1,5 @@
 <?php
-# 'db' prefix for database access variables
+#  'db' prefix for database access variables
 $config['dbName'] = "ejemplo";
 $config['dbUser'] = "ejemplo";
 $config['dbPass'] = "ejemplo";

@@ -2,8 +2,7 @@
 <?php
 /* Si se llama desde el form, contendra datos de 'input' y al no ser
  * $_POST falso se ejecutar primero el PHP, si no hubiese datos y fuese
- * falso se ignoraria el PHP y mostraria el formulario.
- */
+ * falso se ignoraria el PHP y mostraria el formulario. */
     if($_POST){
 	// include conexion a la BD -> de aqui obtenemos $conexion
 	include 'conexion.php';

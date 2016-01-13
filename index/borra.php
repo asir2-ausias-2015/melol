@@ -4,7 +4,7 @@
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Registro no encontrado.');
 
 // Consulta de borrado
-$query = "DELETE FROM clientes WHERE id = ?";
+$query = "DELETE FROM users WHERE userId = ?";
 
 $stmt = $conexion->prepare($query);
 
