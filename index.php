@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Proyecto CRUD</title>
+        <title>Manager Emulator League of Legends</title>
 	<link media="all" href="css/style.css" rel="stylesheet" type="text/css"></link>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

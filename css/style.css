@@ -1,3 +1,32 @@
+/* Aqui tienen que ir todas las clases que creeis nuevas para luego referenciar este archivo 
+	desde todas las paginas de la aplicacion */
+
+	.padd40T{                           	/*Padding Top de 40 pixeles*/
+		padding-top: 40px;
+		}
+	.padd5B{                          	/*Padding Bottom de 5 pixeles*/
+		padding-bottom: 5px;  
+	} 
+	.b3solidGrey {                         	/*Borde solido de 3 pixeles Color gris*/
+		border: 3px solid #a9a9a9;
+	}
+	.width25 {                        	/*Ancho 25 pixeles*/
+		width: 25px;
+	}
+	.width70 {                        	/*Ancho de 70 pixeles*/
+		width: 70px;
+	}
+	.maxwidth140 {                     	/*Ancho máximo de 140 pixeles*/
+		max-width: 140px;
+	}
+	.minwidth100 {                    	/*Ancho mínimo de 100px*/
+		min-width: 100px;
+	}
+	.minwidth25 {				/*Ancho mínimo de 25px*/		
+		min-width: 25px;
+	}
+
+/* CSS heredado de proyecto_crud */
 html,
 body {
 margin:0;
