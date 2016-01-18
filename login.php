@@ -5,8 +5,7 @@
 	<div id="inputlogin">Password: <input type = "password" name = "password" id = "password"/></div>
     
     
-    <input class="margXL" type = "button" value = "Login"
-           onclick = "formhash(this.form, this.form.password);" />
+    <input class="margXL" type = "submit" value = "Login" />
     </div>
 </form>
 

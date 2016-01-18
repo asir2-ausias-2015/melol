@@ -44,7 +44,7 @@ function login($usuario, $password, $conexion) {
     $stmt->store_result();
 
     // recogemos el resultado de la consulta
-    $stmt->bind_result($id, $usuario, $db_pasword); //password de la bd
+    $stmt->bind_result($id, $usuario, $db_password); //password de la bd
     $stmt->fetch();
     
     // calculamos el sha512 del password
@@ -59,7 +59,7 @@ function login($usuario, $password, $conexion) {
 	    return false;
 	} else {
 	    // Comprobar si el password de la bd coincide con la enviada por el usuario
-	    if ($db_password == $password) { //las dos en sha512
+	    if ($db_password == $password) { //
 		// Password es correcto: Tomamos user-agent string del navegador del usuario
 		// por ejemplo Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
 		$user_browser = $_SERVER['HTTP_USER_AGENT'];

@@ -8,7 +8,7 @@ if ($action == 'deleted') {
 }
 
 // Elegir los datos que deseamos recuperar de la tabla
-$query = "SELECT usersId,userMail,userNick,userSignedDate,userPoints,userLevel "
+$query = "SELECT userId,userMail,userNick,userSignedDate,userPoints,userLevel "
 	. "FROM users "
 	. "ORDER BY userId";
 
@@ -19,7 +19,7 @@ if (!$stmt->execute()) {
 } 
 
 // recogemos los datos
-$stmt->bind_result($usersId,$userMail,$userNick,$userSignedDate,$userPoints,$userLevel);
+$stmt->bind_result($userId,$userMail,$userNick,$userSignedDate,$userPoints,$userLevel);
 
 // enlace a alta
 echo "<div>";
@@ -40,7 +40,7 @@ echo "</tr>";
 //recorrido por el resultado de la consulta
 while ($stmt->fetch()) {
 echo "<tr>";
-echo "<td>$usersId</td>";
+echo "<td>$userId</td>";
 echo "<td>$userMail</td>";
 echo "<td>$userNick</td>";
 echo "<td>$userSignedDate</td>";

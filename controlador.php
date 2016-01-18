@@ -4,7 +4,7 @@ include_once 'inc/functions.php';
 sec_session_start();
 
 $usuario = filter_input(INPUT_POST, 'usuario', $filter = FILTER_SANITIZE_STRING);
-$password = filter_input(INPUT_POST, 'psha', $filter = FILTER_SANITIZE_STRING); // The hashed password.
+$password = filter_input(INPUT_POST, 'password', $filter = FILTER_SANITIZE_STRING); // The hashed password.
 
 if (!login_check($conexion)) { //no estas autorizado
     if (isset($usuario, $password)) {
@@ -12,7 +12,7 @@ if (!login_check($conexion)) { //no estas autorizado
 	    // Éxito
 	    $action = $default_action; //acción por defecto
 	    
-	    echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> logout
+	    echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> Desconectar
 		{$_SESSION['usuario']} </a></div>";
 	    
 	} else {
@@ -36,7 +36,11 @@ if (!login_check($conexion)) { //no estas autorizado
     case 'login': $action = $default_action;break;
     case 'logout':logout();$action='login';
     }
-    echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> Desconectar {$_SESSION['usuario']} </a></div><br>";
+	if ($action != "login"){
+		echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> "
+		. "Desconectar {$_SESSION['usuario']} "
+		. "</a></div><br>";
+	}
     if (!isset($action)) {
 	$action = $default_action; //acción por defecto $default_action = "lista"
     }
