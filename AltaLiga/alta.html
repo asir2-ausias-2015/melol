@@ -1,0 +1,57 @@
+
+<html>
+  
+    <head>
+          <style>
+              html {
+    background: url("6A0.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+div {
+    color: black;
+    background-color: cadetblue;
+    width: 500px;
+    height: 400px;
+    margin:0 auto;
+    text-align: center;
+}
+submit {
+    width: 100px;
+    height: 200px;
+    background-color: blue;
+}
+</style>
+        <title>Registro de liga en melol</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        
+        <div>
+            <h1>CREACION DE LIGA</h1>
+        <form action="alta.php" method="post">
+            <strong>Nombre Liga </strong></br><input type="text" name="liga"></br> </br>
+            <p><strong>Tipo de liga</strong></p>
+            <input type="radio" name="tipo" value="0">Publica </br> </br>
+            <input type="radio" name="tipo" value="1">Privada </br> </br>
+            <label for="so">Número de coachers</label> <br/>
+<select id="numero" name="numero">
+  
+  <option value="1" selected="selected">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+            </br>
+            </br> <input type="submit" value="CREAR" name="enviar" >
+        </form>
+        </div>
+        
+    </body>
+</html>
