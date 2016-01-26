@@ -35,13 +35,22 @@ function sys_session_destroy(){
     session_destroy();
 }
 
-function sys_user_verify($userName, $userPassword){
+function sys_user_verify($userName, $userPassword, $conexion){
     if (!empty($userName) && !empty($userPassword)) {
-        $userId = sys_user_getId($userName);
+        $userId = sys_user_getId($userName, $conexion);
         if (!empty($userId)){
             # read hashed password from database
-            $dbPassword = password_hash("melol", PASSWORD_DEFAULT);
-            if (password_verify ($userPassword , $dbPassword )){
+			$stmt = $conexion->prepare("SELECT userPass
+										FROM users
+										WHERE userId = ?
+										LIMIT 1"); 
+			$stmt->bind_param('i', $userId);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($db_password); //password de la bd
+			$stmt->fetch();
+			
+            if (password_verify($userPassword , $dbPassword )){
                 return TRUE;
             }
         }
@@ -49,14 +58,20 @@ function sys_user_verify($userName, $userPassword){
     return FALSE;
 }
 
-function sys_user_getId($userName){
+function sys_user_getId($userName, $conexion){
     $userId="";
     if (!empty($userName)) {
-        # search user in DATABASE
-        if ($userName == "melol"){
-            #search Id in DATABASE
-            $userId = "1" ;
+        $query = "SELECT `userId` "
+		       . "FROM `users`"
+		       . "WHERE `userNick` = ? "
+		       . "LIMIT 1";
+		$stmt = $conexion->prepare($query); 
+			$stmt->bind_param('s', $userName);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($userId); 
+			$stmt->fetch();
         }
-    }
+    
     return $userId;
 }
