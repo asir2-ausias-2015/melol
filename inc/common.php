@@ -1,14 +1,13 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function sys_session_start(){
+	if (!isset($_SESSION)) {
+		session_name("MELOLSESSION");
+	    session_start();
+	}
+}
 
 function sys_session_test(){
-    session_name("MELOLSESSION");
-    session_start();
+    sys_session_start();
     if (isset($_SESSION["userId"]) && isset($_SESSION["sessionId"]) && isset($_REQUEST["sessionId"])) {
             if ($_SESSION["sessionId"] == $_REQUEST["sessionId"]) {
                 return TRUE;
@@ -17,8 +16,10 @@ function sys_session_test(){
     return FALSE;
 }
 
-function sys_session_create($userId, $force = FALSE){
+function sys_session_create($force = FALSE){
     if (!sys_session_test() || $force){
+		$userId = $_SESSION['userId'];
+
         if (!empty($userId)) {
             $sessionId = md5(uniqid(mt_rand(), true));
             $_SESSION["sessionId"] = $sessionId;
@@ -50,8 +51,11 @@ function sys_user_verify($userName, $userPassword, $conexion){
 			$stmt->bind_result($db_password); //password de la bd
 			$stmt->fetch();
 			
-            if (password_verify($userPassword , $dbPassword )){
-                return TRUE;
+            if (password_verify($userPassword, $db_password)){
+				$_SESSION['userId'] = $userId;
+				$_SESSION['userName'] = $userName;
+				sys_session_create();
+				return TRUE;
             }
         }
     }

@@ -2,8 +2,6 @@
 include 'conexion.php';
 include_once 'inc/functions.php';
 
-sys_session_create($_SESSION["userId"]);
-
 $usuario = filter_input(INPUT_POST, 'usuario', $filter = FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', $filter = FILTER_SANITIZE_STRING); // The hashed password.
 
@@ -39,7 +37,7 @@ if (!sys_user_verify($usuario, $password, $conexion)) { //no estas autorizado
     }
 	if ($action != "login"){
 		echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> "
-		. "Desconectar {$_SESSION['usuario']} "
+		. "Desconectar " . $_SESSION['userName']
 		. "</a></div><br>";
 	}
     if (!isset($action)) {
