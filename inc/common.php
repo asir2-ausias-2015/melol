@@ -1,14 +1,13 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function sys_session_start(){
+	if (!isset($_SESSION)) {
+		session_name("MELOLSESSION");
+	    session_start();
+	}
+}
 
 function sys_session_test(){
-    session_name("MELOLSESSION");
-    session_start();
+    sys_session_start();
     if (isset($_SESSION["userId"]) && isset($_SESSION["sessionId"]) && isset($_REQUEST["sessionId"])) {
             if ($_SESSION["sessionId"] == $_REQUEST["sessionId"]) {
                 return TRUE;
@@ -17,8 +16,10 @@ function sys_session_test(){
     return FALSE;
 }
 
-function sys_session_create($userId, $force = FALSE){
+function sys_session_create($force = FALSE){
     if (!sys_session_test() || $force){
+		$userId = $_SESSION['userId'];
+
         if (!empty($userId)) {
             $sessionId = md5(uniqid(mt_rand(), true));
             $_SESSION["sessionId"] = $sessionId;
@@ -35,28 +36,46 @@ function sys_session_destroy(){
     session_destroy();
 }
 
-function sys_user_verify($userName, $userPassword){
+function sys_user_verify($userName, $userPassword, $conexion){
     if (!empty($userName) && !empty($userPassword)) {
-        $userId = sys_user_getId($userName);
+        $userId = sys_user_getId($userName, $conexion);
         if (!empty($userId)){
             # read hashed password from database
-            $dbPassword = password_hash("melol", PASSWORD_DEFAULT);
-            if (password_verify ($userPassword , $dbPassword )){
-                return TRUE;
+			$stmt = $conexion->prepare("SELECT userPass
+										FROM users
+										WHERE userId = ?
+										LIMIT 1"); 
+			$stmt->bind_param('i', $userId);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($db_password); //password de la bd
+			$stmt->fetch();
+			
+            if (password_verify($userPassword, $db_password)){
+				$_SESSION['userId'] = $userId;
+				$_SESSION['userName'] = $userName;
+				sys_session_create();
+				return TRUE;
             }
         }
     }
     return FALSE;
 }
 
-function sys_user_getId($userName){
+function sys_user_getId($userName, $conexion){
     $userId="";
     if (!empty($userName)) {
-        # search user in DATABASE
-        if ($userName == "melol"){
-            #search Id in DATABASE
-            $userId = "1" ;
+        $query = "SELECT `userId` "
+		       . "FROM `users`"
+		       . "WHERE `userNick` = ? "
+		       . "LIMIT 1";
+		$stmt = $conexion->prepare($query); 
+			$stmt->bind_param('s', $userName);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($userId); 
+			$stmt->fetch();
         }
-    }
+    
     return $userId;
 }

@@ -1,12 +1,11 @@
 <?php
 include 'conexion.php';
 include_once 'inc/functions.php';
-sec_session_start();
 
 $usuario = filter_input(INPUT_POST, 'usuario', $filter = FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', $filter = FILTER_SANITIZE_STRING); // The hashed password.
 
-if (!login_check($conexion)) { //no estas autorizado
+if (!sys_user_verify($usuario, $password, $conexion)) { //no estas autorizado
     if (isset($usuario, $password)) {
 	if (login($usuario, $password, $conexion) == true) {
 	    // Éxito
@@ -38,7 +37,7 @@ if (!login_check($conexion)) { //no estas autorizado
     }
 	if ($action != "login"){
 		echo "<div class=\"logout\"> <a href=\"index.php?action=logout\"> "
-		. "Desconectar {$_SESSION['usuario']} "
+		. "Desconectar " . $_SESSION['userName']
 		. "</a></div><br>";
 	}
     if (!isset($action)) {
@@ -46,7 +45,7 @@ if (!login_check($conexion)) { //no estas autorizado
     }
     if (!file_exists($action . '.php')) { //comprobamos que el fichero exista
 	$action = $default_action; //si no existe mostramos la página por defecto
-	echo "Operación no soportada: 404 [Prueba: Default is ". $default_action ." ] and action= ". $action ."!";
+	echo "Operación no soportada: 404 [Prueba: Default is ". $default_action ." ] and action= ". $action ."!"; //Mostrar un 404
     }
 }
 include( $action . '.php'); //y ahora mostramos la pagina llamada 
