@@ -42,7 +42,7 @@ if (!login_check($conexion)) {
 		. "Desconectar " . $_SESSION['userName']
 		. "</a></div><br>";
 	}
-	if (!isset($action)) {
+	if (empty($action)) {
 		$action = $default_action; //acción por defecto $default_action = "lista"
 	}
 	if (!file_exists($action . '.php')) { //comprobamos que el fichero exista
