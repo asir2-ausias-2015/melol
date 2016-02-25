@@ -28,7 +28,7 @@ sys_session_start();
             <nav class="melolbar">
                 <div><a href="index.php">Inicio</a></div>
                 <div><a href="index.php?action=altas">Altas</a></div>
-				<div><a href="index.php?action=hasher">Hasher</a></div>
+				<div><a href="index.php?action=clasification">Clasificación</a></div>
             </nav>
             <div id="content">
             <?php

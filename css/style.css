@@ -7,6 +7,9 @@
 	.padd5B{                          	/*Padding Bottom de 5 pixeles*/
 		padding-bottom: 5px;  
 	}
+	.padd25R{                          	/*Padding Derecho de 25 pixeles*/
+		padding-right: 25px;  
+	}
 	.b3solidGrey {                         	/*Borde solido de 3 pixeles Color gris*/
 		border: 3px solid #a9a9a9;
 	}
@@ -18,6 +21,9 @@
 	}
 	.maxwidth140 {                     	/*Ancho máximo de 140 pixeles*/
 		max-width: 140px;
+	}
+	.maxwidth50 {                     	/*Ancho máximo de 50 pixeles*/
+		max-width: 50px;
 	}
 	.minwidth100 {                    	/*Ancho mínimo de 100px*/
 		min-width: 100px;

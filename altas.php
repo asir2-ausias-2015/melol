@@ -39,26 +39,30 @@
 <form action='altas.php' method='post'>
 <table border='0'>
     <tr>
-	<td>Usuario</td>
-	<td><input type='text' name='usuario' /></td>
+		<td>Usuario</td>
+		<td><input type='text' name='usuario' /></td>
+    </tr>
+	<tr>
+		<td>Correo electronico</td>
+		<td><input type='text' name='email' /></td>
     </tr>
     <tr>
-	<td>Correo electronico</td>
-	<td><input type='text' name='email' /></td>
+		<td>Contraseña</td>
+		<td><input type='text' name='password' /></td>
     </tr>
+	<tr>
+		<td>Repite contraseña</td>
+		<td><input type='text' name='repassword' /></td>
+    </tr>
+	<tr>
+		<td></td>
+		<td><input type="checkbox" name="terms" value="terms" checked><a href="#">Acepto los terminos de uso</a><br></td>
+	</tr>
     <tr>
-	<td>Contraseña</td>
-	<td><input type='text' name='password' /></td>
-    </tr>
-    <td>Repite contraseña</td>
-    <td><input type='text' name='repassword' /></td>
-    </tr>
-    <tr>
-	<td></td>
-	<td>
-	<input type="submit" name="save" value="Save" />
-	<a href="./index.php?action=<?php echo $default_action ?>">Volver al inicio</a>
-	</td>
+		<td>
+		<input type="submit" name="save" value="Save" />
+		<a href="./index.php?action=<?php echo $default_action ?>">Volver al inicio</a></td>
+		<td></td>
     </tr>
 </table>
 </form>

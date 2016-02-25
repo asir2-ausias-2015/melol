@@ -1,3 +1,4 @@
+//Pagina para crear contraseñas de prueba
 <?php
 
 $pass1 = password_hash("ausias", PASSWORD_DEFAULT);

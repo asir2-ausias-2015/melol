@@ -13,15 +13,15 @@ $stmt->execute();
 $stmt->bind_result($leaguename);
 $stmt->fetch();
 ?>
-<div class="padd50T padd5B"><span><?php echo htmlspecialchars($leaguename, ENT_QUOTES); ?></span><span class="pull-right "> Jornada X/Y</span></div>
+<div class="padd50T padd5B"><span>Liga: <?php echo htmlspecialchars($leaguename, ENT_QUOTES); ?></span><span class="pull-right padd25R"> Jornada X/Y</span></div>
 <!-- TABLE START -->
 <div>
 	<table class="table table-hover table-condensed" style="max-width:98%">
 		<tr>
 			<th scope="col" colspan="2">Pos.</th>
 			<th scope="col" class="minwidth100 maxwidth140">Equipo</th>
-			<th scope="col" class="minwidth100 maxwidth140">Coach</th>
-			<th scope="col" class="minwidth100 maxwidth140">Valor equipo</th>
+			<th scope="col" class="maxwidth50">Coach</th>
+			<th scope="col" class="maxwidth50">Valor equipo</th>
 			<th scope="col" class="minwidth100 width70">Puntos</th>
 		</tr>
 		<?php
@@ -49,8 +49,8 @@ $stmt->fetch();
 					</td>
 					<td class="width25"><?php echo $i; ?></td>
 					<td><?php echo htmlspecialchars($team, ENT_QUOTES); ?></td>
-					<td><?php echo htmlspecialchars($coach, ENT_QUOTES); ?></td>
-					<td class="text-right"><?php echo htmlspecialchars($money, ENT_QUOTES); ?></td>
+					<td class="maxwidth50"><?php echo htmlspecialchars($coach, ENT_QUOTES); ?></td>
+					<td class="text-right maxwidth50"><?php echo htmlspecialchars($money, ENT_QUOTES); ?></td>
 					<td class="text-right"><?php echo htmlspecialchars($points, ENT_QUOTES); ?></td>
 				</tr>
 				<?php
