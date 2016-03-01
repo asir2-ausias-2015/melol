@@ -5,6 +5,7 @@ include 'conexion.php';
 
 $usuario = filter_input(INPUT_POST, 'usuario', $filter = FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', $filter = FILTER_SANITIZE_STRING); // The hashed password.
+$action = basename(filter_input(INPUT_GET, 'action', $filter = FILTER_SANITIZE_STRING));
 
 if (!login_check($conexion)) {
 	if (isset($usuario, $password)) {
@@ -23,13 +24,11 @@ if (!login_check($conexion)) {
 				Login incorrecto! Revisa los datos.
 			</div>";
 		}
-	} else {
+	} else if (! $action == "passolvidada") {
 		//significa que aún no has valores para usuario y password
 		$action = "login";
 	}
 } else { // si estas autorizado
-	$action = basename(filter_input(INPUT_GET, 'action', $filter = FILTER_SANITIZE_STRING));
-
 	// In case para definir la accion default segun 'login/logout'
 	switch ($action) {
 		case 'login': $action = $default_action;
